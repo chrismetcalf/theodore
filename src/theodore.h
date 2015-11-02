@@ -100,6 +100,7 @@ enum AlvinKey {
   KEY_CTRL = 13,
   KEY_FIRE = 14,
   KEY_TURNON = 15
+  KEY_MENU_VOICE= 16,
 };
 
 enum CtrlValues {
@@ -131,6 +132,7 @@ typedef struct {
   char menu_text[MENU_TEXT_LEN];
   bool toggle;
   bool on;
+  bool voice;
 } MenuEntry;
 
 // Change the CONFIG_VER only if the ConfigData struct changes

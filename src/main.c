@@ -79,6 +79,11 @@ EXTFN void menu_item_fired(int32_t menu_item) {
 
   int32_t turnon = config_data.entry[menu_item].on ? 0 : 1; // Menu item not set yet, so previous value used
 
+  // Check to see if we need to prompt for a message
+  if(config_data.entry[menu_item].voice) {
+    LOG_WARN("prompt for voice!");
+  }
+
   Tuplet tuplet1 = TupletInteger(KEY_FIRE, menu_item);
   Tuplet tuplet2 = TupletInteger(KEY_TURNON, turnon);
 
@@ -207,6 +212,22 @@ static void in_received_handler(DictionaryIterator *iter, void *context) {
 
   }
 
+  // Which menu entries have voice prompts
+  Tuple *voice_tuple = dict_find(iter, KEY_MENU_VOICE);
+  if (voice_tuple) {
+
+    int32_t voice_value = voice_tuple->value->int32;
+    config_data.entry[0].voice = (voice_value & 1) == 1;
+    config_data.entry[1].voice = (voice_value & 2) == 2;
+    config_data.entry[2].voice = (voice_value & 4) == 4;
+    config_data.entry[3].voice = (voice_value & 8) == 8;
+    config_data.entry[4].voice = (voice_value & 16) == 16;
+    config_data.entry[5].voice = (voice_value & 32) == 32;
+    config_data.entry[6].voice = (voice_value & 64) == 64;
+    config_data.entry[7].voice = (voice_value & 128) == 128;
+    config_data.entry[8].voice = (voice_value & 256) == 256;
+    config_data.entry[9].voice = (voice_value & 512) == 512;
+  }
 }
 
 /*
@@ -234,7 +255,7 @@ EXTFN void open_comms() {
 
   // Incoming size
   Tuplet out_values[] = { TupletInteger(KEY_FIRE, 0), TupletInteger(KEY_TURNON, 0) };
-  Tuplet in_values[] = { TupletCString(KEY_MENU_NAME_1, FULL_STRING), TupletCString(KEY_MENU_NAME_2, FULL_STRING), TupletCString(KEY_MENU_NAME_3, FULL_STRING), TupletCString(KEY_MENU_NAME_4, FULL_STRING), TupletCString(KEY_MENU_NAME_5, FULL_STRING), TupletCString(KEY_MENU_NAME_6, FULL_STRING), TupletCString(KEY_MENU_NAME_7, FULL_STRING), TupletCString(KEY_MENU_NAME_8, FULL_STRING), TupletCString(KEY_MENU_NAME_9, FULL_STRING), TupletCString(KEY_MENU_NAME_10, FULL_STRING), TupletInteger(KEY_MENU_TOGGLE, 0) };
+  Tuplet in_values[] = { TupletCString(KEY_MENU_NAME_1, FULL_STRING), TupletCString(KEY_MENU_NAME_2, FULL_STRING), TupletCString(KEY_MENU_NAME_3, FULL_STRING), TupletCString(KEY_MENU_NAME_4, FULL_STRING), TupletCString(KEY_MENU_NAME_5, FULL_STRING), TupletCString(KEY_MENU_NAME_6, FULL_STRING), TupletCString(KEY_MENU_NAME_7, FULL_STRING), TupletCString(KEY_MENU_NAME_8, FULL_STRING), TupletCString(KEY_MENU_NAME_9, FULL_STRING), TupletCString(KEY_MENU_NAME_10, FULL_STRING), TupletInteger(KEY_MENU_TOGGLE, 0), TupletInteger(KEY_MENU_VOICE, 0) };
 
   uint32_t outbound_size = dict_calc_buffer_size_from_tuplets(out_values, ARRAY_LENGTH(out_values)) + FUDGE;
   uint32_t inbound_size = dict_calc_buffer_size_from_tuplets(in_values, ARRAY_LENGTH(in_values)) + FUDGE;
