@@ -1,8 +1,8 @@
-/* 
+/*
  * Alvin IFTTT Control Application
  *
  * Copyright (c) 2015 James Fowler
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -95,8 +95,9 @@ Pebble.addEventListener("webviewclosed", function(e) {
 
   // Process
   if (configData.action === "save") {
-    // Names
+    // IFTTT Key
     window.localStorage.setItem("key", configData.key);
+    // Names
     window.localStorage.setItem("mn1", configData.mn1);
     window.localStorage.setItem("mn2", configData.mn2);
     window.localStorage.setItem("mn3", configData.mn3);
@@ -129,6 +130,7 @@ Pebble.addEventListener("webviewclosed", function(e) {
     window.localStorage.setItem("v8", configData.v8);
     window.localStorage.setItem("v9", configData.v9);
     window.localStorage.setItem("v10", configData.v10);
+    // Valid key
     window.localStorage.setItem("kvalid", configData.keyValid);
 
     console.log("Test settings requested");
@@ -136,7 +138,9 @@ Pebble.addEventListener("webviewclosed", function(e) {
 
     console.log("Tell the watch what it needs to know");
 
+    // Build up bitmaps for which items have toggles or voice prompts
     var toggle = (configData.t1 === "Y" ? 1 : 0) | (configData.t2 === "Y" ? 2 : 0) | (configData.t3 === "Y" ? 4 : 0) | (configData.t4 === "Y" ? 8 : 0) | (configData.t5 === "Y" ? 16 : 0) | (configData.t6 === "Y" ? 32 : 0) | (configData.t7 === "Y" ? 64 : 0) | (configData.t8 === "Y" ? 128 : 0) | (configData.t9 === "Y" ? 256 : 0) | (configData.t10 === "Y" ? 512 : 0);
+    var voice = (configData.v1 === "Y" ? 1 : 0) | (configData.v2 === "Y" ? 2 : 0) | (configData.v3 === "Y" ? 4 : 0) | (configData.v4 === "Y" ? 8 : 0) | (configData.v5 === "Y" ? 16 : 0) | (configData.v6 === "Y" ? 32 : 0) | (configData.v7 === "Y" ? 64 : 0) | (configData.v8 === "Y" ? 128 : 0) | (configData.v9 === "Y" ? 256 : 0) | (configData.v10 === "Y" ? 512 : 0);
 
     Pebble.sendAppMessage({
       "menuName1" : configData.mn1,
@@ -149,7 +153,8 @@ Pebble.addEventListener("webviewclosed", function(e) {
       "menuName8" : configData.mn8,
       "menuName9" : configData.mn9,
       "menuName10" : configData.mn10,
-      "menuToggle" : toggle
+      "menuToggle" : toggle,
+      "menuVoice" : voice
     });
 
   }
@@ -198,7 +203,7 @@ function buildUrl() {
   var v10 = nvl(window.localStorage.getItem("v10"), "N");
   var kvalid = nvl(window.localStorage.getItem("kvalid"), "X");
 
-  var url = mConst().url + version + ".html?" + "vers=" + version + "&" + "key=" + key + "&" + "mn1=" + mn1 + "&" + "mn2=" + mn2 + "&" + "mn3=" + mn3 + "&" + "mn4=" + mn4 + "&" + "mn5=" + mn5 + "&" + "mn6=" + mn6 + "&" + "mn7=" + mn7 + "&" + "mn8=" + mn8 + "&" + "mn9=" + mn9 + "&" + "mn10=" + mn10 + "&" + "t1=" + t1 + "&" + "t2=" + t2 + "&" + "t3=" + t3 + "&" + "t4=" + t4 + "&" + "t5=" + t5 + "&" + "t6=" + t6 + "&" + "t7=" + t7 + "&" + "t8=" + t8 + "&" + "t9=" + t9 + "&" + "t10=" + t10 + "&kvalid=" + kvalid;
+  var url = mConst().url + version + ".html?" + "vers=" + version + "&" + "key=" + key + "&" + "mn1=" + mn1 + "&" + "mn2=" + mn2 + "&" + "mn3=" + mn3 + "&" + "mn4=" + mn4 + "&" + "mn5=" + mn5 + "&" + "mn6=" + mn6 + "&" + "mn7=" + mn7 + "&" + "mn8=" + mn8 + "&" + "mn9=" + mn9 + "&" + "mn10=" + mn10 + "&" + "t1=" + t1 + "&" + "t2=" + t2 + "&" + "t3=" + t3 + "&" + "t4=" + t4 + "&" + "t5=" + t5 + "&" + "t6=" + t6 + "&" + "t7=" + t7 + "&" + "t8=" + t8 + "&" + "t9=" + t9 + "&" + "t10=" + t10 + "&" + "v1=" + v1 + "&" + "v2=" + v2 + "&" + "v3=" + v3 + "&" + "v4=" + v4 + "&" + "v5=" + v5 + "&" + "v6=" + v6 + "&" + "v7=" + v7 + "&" + "v8=" + v8 + "&" + "v9=" + v9 + "&" + "v10=" + v10 + "&kvalid=" + kvalid;
 
   console.log("url=" + url + " (len=" + url.length + ")");
   return url;
