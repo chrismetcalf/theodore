@@ -99,8 +99,8 @@ enum AlvinKey {
   KEY_VERSION = 12,
   KEY_CTRL = 13,
   KEY_FIRE = 14,
-  KEY_TURNON = 15
-  KEY_MENU_VOICE= 16,
+  KEY_TURNON = 15,
+  KEY_MENU_VOICE= 16
 };
 
 enum CtrlValues {

@@ -29,11 +29,11 @@
 /*
  * Do an action
  */
-function iftttMakerInterfaceFire(num, turnon) {
+function iftttMakerInterfaceFire(num, turnon, message) {
 
   try {
     
-    console.log("num = " + num + ", turnon = " + turnon);
+    console.log("num = " + num + ", turnon = " + turnon + ", message=" + message);
 
     // Find out config information
     var key = nvl(window.localStorage.getItem("key"), "");
@@ -107,11 +107,8 @@ function iftttMakerInterfaceFire(num, turnon) {
     
     console.log("doctored eventname = " + eventName);
 
-    // Can't see a use for a payload
     var payload = {
-      "value1" : "",
-      "value2" : "",
-      "value3" : ""
+      "value1" : message
     };
 
     // Blast with an event

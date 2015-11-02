@@ -80,12 +80,15 @@ EXTFN void menu_item_fired(int32_t menu_item) {
   int32_t turnon = config_data.entry[menu_item].on ? 0 : 1; // Menu item not set yet, so previous value used
 
   // Check to see if we need to prompt for a message
+  char* message = "";
   if(config_data.entry[menu_item].voice) {
     LOG_WARN("prompt for voice!");
+    message = "This is my test message";
   }
 
   Tuplet tuplet1 = TupletInteger(KEY_FIRE, menu_item);
   Tuplet tuplet2 = TupletInteger(KEY_TURNON, turnon);
+  Tuplet tuplet3 = TupletCString(KEY_MENU_VOICE, message);
 
   DictionaryIterator *iter;
   app_message_outbox_begin(&iter);
@@ -97,11 +100,16 @@ EXTFN void menu_item_fired(int32_t menu_item) {
 
   dict_write_tuplet(iter, &tuplet1);
   dict_write_tuplet(iter, &tuplet2);
+  dict_write_tuplet(iter, &tuplet3);
   dict_write_end(iter);
 
   app_message_outbox_send();
 
 }
+
+/*
+ * Handle dictation
+ */
 
 /*
  * Incoming message handler
@@ -254,7 +262,7 @@ EXTFN void open_comms() {
   app_message_register_inbox_received(in_received_handler);
 
   // Incoming size
-  Tuplet out_values[] = { TupletInteger(KEY_FIRE, 0), TupletInteger(KEY_TURNON, 0) };
+  Tuplet out_values[] = { TupletInteger(KEY_FIRE, 0), TupletInteger(KEY_TURNON, 0), TupletCString(KEY_MENU_VOICE, FULL_STRING) };
   Tuplet in_values[] = { TupletCString(KEY_MENU_NAME_1, FULL_STRING), TupletCString(KEY_MENU_NAME_2, FULL_STRING), TupletCString(KEY_MENU_NAME_3, FULL_STRING), TupletCString(KEY_MENU_NAME_4, FULL_STRING), TupletCString(KEY_MENU_NAME_5, FULL_STRING), TupletCString(KEY_MENU_NAME_6, FULL_STRING), TupletCString(KEY_MENU_NAME_7, FULL_STRING), TupletCString(KEY_MENU_NAME_8, FULL_STRING), TupletCString(KEY_MENU_NAME_9, FULL_STRING), TupletCString(KEY_MENU_NAME_10, FULL_STRING), TupletInteger(KEY_MENU_TOGGLE, 0), TupletInteger(KEY_MENU_VOICE, 0) };
 
   uint32_t outbound_size = dict_calc_buffer_size_from_tuplets(out_values, ARRAY_LENGTH(out_values)) + FUDGE;

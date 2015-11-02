@@ -61,8 +61,9 @@ Pebble.addEventListener("appmessage", function(e) {
   if (typeof e.payload.fire !== "undefined") {
     var fire = parseInt(e.payload.fire, 10);
     var turnon = parseInt(e.payload.turnon, 10);
-    console.log("MSG fire=" + fire + ", turnon=" + turnon);
-    if (iftttMakerInterfaceFire(fire, turnon)) {
+    var message = e.payload.menuVoice;
+    console.log("MSG fire=" + fire + ", turnon=" + turnon + ", message=" + message);
+    if (iftttMakerInterfaceFire(fire, turnon, message)) {
       callWatchApp(mConst().ctrlGotRequest);
     } else {
       callWatchApp(mConst().ctrlRequestFail);
