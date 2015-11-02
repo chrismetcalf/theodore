@@ -153,13 +153,12 @@ function iftttMakerInterfaceTest() {
       return;
     }
 
+    // TODO: If we're in voice mode, pass our transcribed value
     var payload = {
-      "value1" : "",
-      "value2" : "",
-      "value3" : ""
+      "value1" : ""
     };
 
-    var url = mConst().makerPrefix + "alvin_test" + mConst().makerSuffix + key;
+    var url = mConst().makerPrefix + "theodore_test" + mConst().makerSuffix + key;
 
     console.log("iftttMakerInterfaceTest: url=" + url);
     makeAjaxCall("POST", url, mConst().timeout, JSON.stringify(payload), function(resp) {

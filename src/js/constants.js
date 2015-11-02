@@ -29,7 +29,7 @@
  * Constants
  */
 function mConst() {
-  var urlPrefix = "http://ui.morpheuz.net/alvin/";
+  var urlPrefix = "https://theodore-pebble.surge.sh/";
   return {
     limit : 60,
     divisor : 600000,

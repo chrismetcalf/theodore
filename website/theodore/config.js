@@ -1,8 +1,8 @@
-/* 
+/* Forked from:
  * Alvin IFTTT Control Application
  *
  * Copyright (c) 2015 James Fowler
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -36,9 +36,9 @@ function setKeyBorder(validFlag) {
 }
 
 /*******************************************************************************
- * 
+ *
  * Main process
- * 
+ *
  ******************************************************************************/
 
 $("document").ready(function() {
@@ -78,6 +78,16 @@ $("document").ready(function() {
   var toggle8 = getParameterByName("t8");
   var toggle9 = getParameterByName("t9");
   var toggle10 = getParameterByName("t10");
+  var voice1 = getParameterByName("v1");
+  var voice2 = getParameterByName("v2");
+  var voice3 = getParameterByName("v3");
+  var voice4 = getParameterByName("v4");
+  var voice5 = getParameterByName("v5");
+  var voice6 = getParameterByName("v6");
+  var voice7 = getParameterByName("v7");
+  var voice8 = getParameterByName("v8");
+  var voice9 = getParameterByName("v9");
+  var voice10 = getParameterByName("v10");
   var kvalid = getParameterByName("kvalid");
   var returnTo = getParameterByName("return_to");
   if (returnTo === "") {
@@ -106,58 +116,27 @@ $("document").ready(function() {
   $("#toggle8").prop("checked", toggle8 === "Y");
   $("#toggle9").prop("checked", toggle9 === "Y");
   $("#toggle10").prop("checked", toggle10 === "Y");
-  
+  $("#voice1").prop("checked", voice1 === "Y");
+  $("#voice2").prop("checked", voice2 === "Y");
+  $("#voice3").prop("checked", voice3 === "Y");
+  $("#voice4").prop("checked", voice4 === "Y");
+  $("#voice5").prop("checked", voice5 === "Y");
+  $("#voice6").prop("checked", voice6 === "Y");
+  $("#voice7").prop("checked", voice7 === "Y");
+  $("#voice8").prop("checked", voice8 === "Y");
+  $("#voice9").prop("checked", voice9 === "Y");
+  $("#voice10").prop("checked", voice10 === "Y");
+
   // Set whether the key is considered valid or not
   setKeyBorder(kvalid);
   var originalKValid = kvalid;
-  
+
   // Set version
   $("#version").text(parseInt(vers, 10) / 10);
 
   // Show version warning
   setScreenMessageBasedOnVersion(vers);
-  
-  // Sometimes we ask for love or donations
-  if ((new Date().valueOf()) % 10 === 0) {
-    $("#info-message").css("display", "block");
-  }
 
-  // Move down
-  $(".downicon").click(function() {
-    var tr = $(this).parent().parent();
-    var nexttr = tr.next();
-
-    // Read
-    var currentText = $(".namefield", tr).val();
-    var nextText = $(".namefield", nexttr).val();
-    var currentToggle = $(".togglechk", tr).is(':checked');
-    var nextToggle = $(".togglechk", nexttr).is(':checked');
-
-    // Write
-    $(".namefield", tr).val(nextText);
-    $(".namefield", nexttr).val(currentText);
-    $(".togglechk", tr).prop("checked", nextToggle);
-    $(".togglechk", nexttr).prop("checked", currentToggle);
-  });
-
-  // Move up
-  $(".upicon").click(function() {
-    var tr = $(this).parent().parent();
-    var prevtr = tr.prev();
-
-    // Read
-    var currentText = $(".namefield", tr).val();
-    var prevText = $(".namefield", prevtr).val();
-    var currentToggle = $(".togglechk", tr).is(':checked');
-    var prevToggle = $(".togglechk", prevtr).is(':checked');
-
-    // Write
-    $(".namefield", tr).val(prevText);
-    $(".namefield", prevtr).val(currentText);
-    $(".togglechk", tr).prop("checked", prevToggle);
-    $(".togglechk", prevtr).prop("checked", currentToggle);
-  });
-  
   // We've changed the key
   $("#key").change(function() {
     if ($(this).val() === key) {
@@ -167,7 +146,7 @@ $("document").ready(function() {
     }
     setKeyBorder(kvalid);
   });
-  
+
   // Handle the Save and reset option
   $(".save").click(function() {
     var configData = {
@@ -193,76 +172,18 @@ $("document").ready(function() {
       t8 : $("#toggle8").is(':checked') ? "Y" : "N",
       t9 : $("#toggle9").is(':checked') ? "Y" : "N",
       t10 : $("#toggle10").is(':checked') ? "Y" : "N",
+      v1 : $("#voice1").is(':checked') ? "Y" : "N",
+      v2 : $("#voice2").is(':checked') ? "Y" : "N",
+      v3 : $("#voice3").is(':checked') ? "Y" : "N",
+      v4 : $("#voice4").is(':checked') ? "Y" : "N",
+      v5 : $("#voice5").is(':checked') ? "Y" : "N",
+      v6 : $("#voice6").is(':checked') ? "Y" : "N",
+      v7 : $("#voice7").is(':checked') ? "Y" : "N",
+      v8 : $("#voice8").is(':checked') ? "Y" : "N",
+      v9 : $("#voice9").is(':checked') ? "Y" : "N",
+      v10 : $("#voice10").is(':checked') ? "Y" : "N",
       keyvalid : kvalid
     };
-    var move = true;
-    while (move) {
-      move = false;
-
-      if (configData.mn1 === "" && configData.mn2 !== "") {
-        configData.mn1 = configData.mn2;
-        configData.t1 = configData.t2;
-        configData.mn2 = "";
-        configData.t2 = "N";
-        move = true;
-      }
-      if (configData.mn2 === "" && configData.mn3 !== "") {
-        configData.mn2 = configData.mn3;
-        configData.t2 = configData.t3;
-        configData.mn3 = "";
-        configData.t3 = "N";
-        move = true;
-      }
-      if (configData.mn3 === "" && configData.mn4 !== "") {
-        configData.mn3 = configData.mn4;
-        configData.t3 = configData.t4;
-        configData.mn4 = "";
-        configData.t4 = "N";
-        move = true;
-      }
-      if (configData.mn4 === "" && configData.mn5 !== "") {
-        configData.mn4 = configData.mn5;
-        configData.t4 = configData.t5;
-        configData.mn5 = "";
-        configData.t5 = "N";
-        move = true;
-      }
-      if (configData.mn5 === "" && configData.mn6 !== "") {
-        configData.mn5 = configData.mn6;
-        configData.t5 = configData.t6;
-        configData.mn6 = "";
-        configData.t6 = "N";
-        move = true;
-      }
-      if (configData.mn6 === "" && configData.mn7 !== "") {
-        configData.mn6 = configData.mn7;
-        configData.t6 = configData.t7;
-        configData.mn7 = "";
-        configData.t7 = "N";
-        move = true;
-      }
-      if (configData.mn7 === "" && configData.mn8 !== "") {
-        configData.mn7 = configData.mn8;
-        configData.t7 = configData.t8;
-        configData.mn8 = "";
-        configData.t8 = "N";
-        move = true;
-      }
-      if (configData.mn8 === "" && configData.mn9 !== "") {
-        configData.mn8 = configData.mn9;
-        configData.t8 = configData.t9;
-        configData.mn9 = "";
-        configData.t9 = "N";
-        move = true;
-      }
-      if (configData.mn9 === "" && configData.mn10 !== "") {
-        configData.mn9 = configData.mn10;
-        configData.t9 = configData.t10;
-        configData.mn10 = "";
-        configData.t10 = "N";
-        move = true;
-      }
-    }
     document.location = returnTo + encodeURIComponent(JSON.stringify(configData));
   });
 

@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<project name="alvin" basedir="." default="all">
+<project name="theodore" basedir="." default="all">
 
 	<property name="ver" value="12"/>
 	<property name="inc" value="12"/>
-	<property name="builddir" value="website/alvin/build"/>
-	<property name="srcdir" value="website/alvin"/>
-	<property name="test.dir" value="../Desktop/alvin"/>
+	<property name="builddir" value="website/theodore/build"/>
+	<property name="srcdir" value="website/theodore"/>
+	<property name="test.dir" value="../Desktop/theodore"/>
 	<property name="img" value="/img"/>
 	<property name="jquery" value="/jquery"/>
 
