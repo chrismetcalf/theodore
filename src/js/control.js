@@ -95,6 +95,7 @@ Pebble.addEventListener("webviewclosed", function(e) {
 
   // Process
   if (configData.action === "save") {
+    // Names
     window.localStorage.setItem("key", configData.key);
     window.localStorage.setItem("mn1", configData.mn1);
     window.localStorage.setItem("mn2", configData.mn2);
@@ -106,6 +107,7 @@ Pebble.addEventListener("webviewclosed", function(e) {
     window.localStorage.setItem("mn8", configData.mn8);
     window.localStorage.setItem("mn9", configData.mn9);
     window.localStorage.setItem("mn10", configData.mn10);
+    // Toggle
     window.localStorage.setItem("t1", configData.t1);
     window.localStorage.setItem("t2", configData.t2);
     window.localStorage.setItem("t3", configData.t3);
@@ -116,6 +118,17 @@ Pebble.addEventListener("webviewclosed", function(e) {
     window.localStorage.setItem("t8", configData.t8);
     window.localStorage.setItem("t9", configData.t9);
     window.localStorage.setItem("t10", configData.t10);
+    // Voice
+    window.localStorage.setItem("v1", configData.v1);
+    window.localStorage.setItem("v2", configData.v2);
+    window.localStorage.setItem("v3", configData.v3);
+    window.localStorage.setItem("v4", configData.v4);
+    window.localStorage.setItem("v5", configData.v5);
+    window.localStorage.setItem("v6", configData.v6);
+    window.localStorage.setItem("v7", configData.v7);
+    window.localStorage.setItem("v8", configData.v8);
+    window.localStorage.setItem("v9", configData.v9);
+    window.localStorage.setItem("v10", configData.v10);
     window.localStorage.setItem("kvalid", configData.keyValid);
 
     console.log("Test settings requested");
@@ -173,6 +186,16 @@ function buildUrl() {
   var t8 = nvl(window.localStorage.getItem("t8"), "N");
   var t9 = nvl(window.localStorage.getItem("t9"), "N");
   var t10 = nvl(window.localStorage.getItem("t10"), "N");
+  var v1 = nvl(window.localStorage.getItem("v1"), "N");
+  var v2 = nvl(window.localStorage.getItem("v2"), "N");
+  var v3 = nvl(window.localStorage.getItem("v3"), "N");
+  var v4 = nvl(window.localStorage.getItem("v4"), "N");
+  var v5 = nvl(window.localStorage.getItem("v5"), "N");
+  var v6 = nvl(window.localStorage.getItem("v6"), "N");
+  var v7 = nvl(window.localStorage.getItem("v7"), "N");
+  var v8 = nvl(window.localStorage.getItem("v8"), "N");
+  var v9 = nvl(window.localStorage.getItem("v9"), "N");
+  var v10 = nvl(window.localStorage.getItem("v10"), "N");
   var kvalid = nvl(window.localStorage.getItem("kvalid"), "X");
 
   var url = mConst().url + version + ".html?" + "vers=" + version + "&" + "key=" + key + "&" + "mn1=" + mn1 + "&" + "mn2=" + mn2 + "&" + "mn3=" + mn3 + "&" + "mn4=" + mn4 + "&" + "mn5=" + mn5 + "&" + "mn6=" + mn6 + "&" + "mn7=" + mn7 + "&" + "mn8=" + mn8 + "&" + "mn9=" + mn9 + "&" + "mn10=" + mn10 + "&" + "t1=" + t1 + "&" + "t2=" + t2 + "&" + "t3=" + t3 + "&" + "t4=" + t4 + "&" + "t5=" + t5 + "&" + "t6=" + t6 + "&" + "t7=" + t7 + "&" + "t8=" + t8 + "&" + "t9=" + t9 + "&" + "t10=" + t10 + "&kvalid=" + kvalid;

@@ -27,8 +27,8 @@
 
 #include "pebble.h"
 
-#define VERSION 10
-#define VERSION_TXT "1.0"
+#define VERSION 12
+#define VERSION_TXT "1.2"
 
 // Comment out for production build - leaves errors on BASALT/CHALK and nothing on APLITE as this is much tighter for memory
 #define TESTING_BUILD
