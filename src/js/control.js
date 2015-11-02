@@ -203,7 +203,7 @@ function buildUrl() {
   var v10 = nvl(window.localStorage.getItem("v10"), "N");
   var kvalid = nvl(window.localStorage.getItem("kvalid"), "X");
 
-  var url = mConst().url + version + ".html?" + "vers=" + version + "&" + "key=" + key + "&" + "mn1=" + mn1 + "&" + "mn2=" + mn2 + "&" + "mn3=" + mn3 + "&" + "mn4=" + mn4 + "&" + "mn5=" + mn5 + "&" + "mn6=" + mn6 + "&" + "mn7=" + mn7 + "&" + "mn8=" + mn8 + "&" + "mn9=" + mn9 + "&" + "mn10=" + mn10 + "&" + "t1=" + t1 + "&" + "t2=" + t2 + "&" + "t3=" + t3 + "&" + "t4=" + t4 + "&" + "t5=" + t5 + "&" + "t6=" + t6 + "&" + "t7=" + t7 + "&" + "t8=" + t8 + "&" + "t9=" + t9 + "&" + "t10=" + t10 + "&" + "v1=" + v1 + "&" + "v2=" + v2 + "&" + "v3=" + v3 + "&" + "v4=" + v4 + "&" + "v5=" + v5 + "&" + "v6=" + v6 + "&" + "v7=" + v7 + "&" + "v8=" + v8 + "&" + "v9=" + v9 + "&" + "v10=" + v10 + "&kvalid=" + kvalid;
+  var url = mConst().url + "?vers=" + version + "&" + "key=" + key + "&" + "mn1=" + mn1 + "&" + "mn2=" + mn2 + "&" + "mn3=" + mn3 + "&" + "mn4=" + mn4 + "&" + "mn5=" + mn5 + "&" + "mn6=" + mn6 + "&" + "mn7=" + mn7 + "&" + "mn8=" + mn8 + "&" + "mn9=" + mn9 + "&" + "mn10=" + mn10 + "&" + "t1=" + t1 + "&" + "t2=" + t2 + "&" + "t3=" + t3 + "&" + "t4=" + t4 + "&" + "t5=" + t5 + "&" + "t6=" + t6 + "&" + "t7=" + t7 + "&" + "t8=" + t8 + "&" + "t9=" + t9 + "&" + "t10=" + t10 + "&" + "v1=" + v1 + "&" + "v2=" + v2 + "&" + "v3=" + v3 + "&" + "v4=" + v4 + "&" + "v5=" + v5 + "&" + "v6=" + v6 + "&" + "v7=" + v7 + "&" + "v8=" + v8 + "&" + "v9=" + v9 + "&" + "v10=" + v10 + "&kvalid=" + kvalid;
 
   console.log("url=" + url + " (len=" + url.length + ")");
   return url;

@@ -33,7 +33,7 @@ function mConst() {
   return {
     limit : 60,
     divisor : 600000,
-    url : urlPrefix + "config.json",
+    url : urlPrefix + "config.html",
     versionDef : "0",
     lowestVersion : 1,
     ctrlVersionDone : 1,
