@@ -30,6 +30,11 @@ static bool save_config_requested = false;
 static bool version_sent = false;
 static AppTimer *redraw_timer = NULL;
 
+// Dictation Session for transcription
+static DictationSession *s_dictation_session;
+// Last menu item we clicked
+static int32_t last_menu_item;
+
 /*
  * Send a message to javascript
  */
@@ -72,19 +77,9 @@ static void request_update_redraw() {
   }
 }
 
-/*
- * Menu item fired
- */
-EXTFN void menu_item_fired(int32_t menu_item) {
-
+/* Send to the phone */
+static void send_menu_item(int32_t menu_item, char *message) {
   int32_t turnon = config_data.entry[menu_item].on ? 0 : 1; // Menu item not set yet, so previous value used
-
-  // Check to see if we need to prompt for a message
-  char* message = "";
-  if(config_data.entry[menu_item].voice) {
-    LOG_WARN("prompt for voice!");
-    message = "This is my test message";
-  }
 
   Tuplet tuplet1 = TupletInteger(KEY_FIRE, menu_item);
   Tuplet tuplet2 = TupletInteger(KEY_TURNON, turnon);
@@ -104,12 +99,38 @@ EXTFN void menu_item_fired(int32_t menu_item) {
   dict_write_end(iter);
 
   app_message_outbox_send();
-
 }
 
 /*
  * Handle dictation
  */
+static void dictation_session_callback(DictationSession *session, DictationSessionStatus status, 
+                                       char *transcription, void *context) {
+//  LOG_DEBUG("Menu item: %d", last_menu_item);
+  // Print the results of a transcription attempt                                     
+  LOG_DEBUG("Dictation status: %d", (int)status);
+  LOG_DEBUG("Got text: %s", transcription);
+    
+  send_menu_item(last_menu_item, transcription);
+}
+/*
+ * Menu item fired
+ */
+EXTFN void menu_item_fired(int32_t menu_item) {
+  // Check to see if we need to prompt for a message
+  if(config_data.entry[menu_item].voice) {
+    // We're looking for a voice message and we haven't gotten one
+    LOG_WARN("prompt for voice!");
+    last_menu_item = menu_item;
+    s_dictation_session = dictation_session_create(512, 
+                                               dictation_session_callback, NULL);
+    dictation_session_start(s_dictation_session);
+  } else {
+    // No message
+    send_menu_item(menu_item, "");
+  }
+}
+
 
 /*
  * Incoming message handler
