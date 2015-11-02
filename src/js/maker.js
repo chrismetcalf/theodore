@@ -1,4 +1,5 @@
-/* 
+/*
+ * Forked from:
  * Alvin IFTTT Control Application
  *
  * Copyright (c) 2015 James Fowler

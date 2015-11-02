@@ -1,4 +1,4 @@
-/* 
+/* Forked from: 
  * Alvin IFTTT Control Application
  *
  * Copyright (c) 2015 James Fowler
@@ -27,8 +27,8 @@
 
 #include "pebble.h"
 
-#define VERSION 12
-#define VERSION_TXT "1.2"
+#define VERSION 10
+#define VERSION_TXT "1.0"
 
 // Comment out for production build - leaves errors on BASALT/CHALK and nothing on APLITE as this is much tighter for memory
 #define TESTING_BUILD
@@ -62,7 +62,7 @@
 #define MENU_REDRAW_TIME_MS 2000
 
 #ifdef PBL_COLOR 
-#define BACKGROUND_COLOR GColorDukeBlue
+#define BACKGROUND_COLOR GColorOxfordBlue
 #define MENU_TEXT_COLOR GColorWhite
 #define MENU_HIGHLIGHT_BACKGROUND_COLOR GColorBlack
 #define MENU_BACKGROUND_COLOR BACKGROUND_COLOR

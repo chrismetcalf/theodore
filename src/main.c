@@ -23,7 +23,7 @@
  */
 
 #include "pebble.h"
-#include "alvin.h"
+#include "theodore.h"
 
 static ConfigData config_data;
 static bool save_config_requested = false;

@@ -1,4 +1,4 @@
-/*
+/* Forked from:
  * Alvin IFTTT Control Application
  *
  * Copyright (c) 2015 James Fowler
@@ -23,7 +23,7 @@
  */
 
 #include "pebble.h"
-#include "alvin.h"
+#include "theodore.h"
 
 // Constants
 #define NUM_MENU_SECTIONS 1
@@ -334,8 +334,8 @@ static void window_load(Window *window) {
   menu_layer_set_callbacks(menu_layer, NULL, (MenuLayerCallbacks ) 
   { .get_num_sections = menu_get_num_sections_callback, 
    .get_num_rows = menu_get_num_rows_callback, 
-   .get_header_height = menu_get_header_height_callback, 
-   .draw_header = menu_draw_header_callback, 
+//   .get_header_height = menu_get_header_height_callback, 
+//   .draw_header = menu_draw_header_callback, 
    .draw_row = menu_draw_row_callback, 
    .select_click = menu_select_callback, 
    .select_long_click = menu_select_long_click,

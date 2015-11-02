@@ -19,8 +19,8 @@
     "capabilities": [
         "configurable"
     ],
-    "companyName": "James Fowler",
-    "longName": "Alvin",
+    "companyName": "Chris Metcalf",
+    "longName": "Theodore",
     "projectType": "native",
     "resources": {
         "media": [
@@ -30,26 +30,25 @@
                 "type": "png"
             },
             {
-                "file": "images/flourish.png",
-                "name": "IMAGE_FLOURISH",
+                "file": "images/menu_no.png",
+                "name": "IMAGE_MENU_NO",
                 "type": "png"
             },
             {
-                "file": "images/menu_no.png",
-                "name": "IMAGE_MENU_NO",
+                "file": "images/flourish.png",
+                "name": "IMAGE_FLOURISH",
                 "type": "png"
             }
         ]
     },
     "sdkVersion": "3",
-    "shortName": "Alvin",
+    "shortName": "Theodore",
     "targetPlatforms": [
-        "aplite",
         "basalt",
         "chalk"
     ],
-    "uuid": "3b664cf6-766d-4ea9-95bd-f29fc1ab8a51",
-    "versionLabel": "1.2",
+    "uuid": "e5499246-8817-4cee-b907-49db68ddef7d",
+    "versionLabel": "1.0",
     "watchapp": {
         "watchface": false
     }

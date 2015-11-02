@@ -23,7 +23,7 @@
  */
 
 #include "pebble.h"
-#include "alvin.h"
+#include "theodore.h"
 
 #ifdef PBL_SDK_3
 
